@@ -9,7 +9,7 @@ class NewEvent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userID: '',
+            userID: this.props.userID,
             newEvent: '',
             newMemo: '',
             newDate: null,
@@ -35,7 +35,7 @@ class NewEvent extends Component {
         this.setState({newDate: event.target.value});
     }
     submitHandler = () => {
-        this.props.newEvent({ user: this.state.userID, event: this.state.newEvent, memo: this.state.newMemo, date: this.state.newDate, time: this.state.newTime })
+        this.props.newEvent({ user: this.state.userID, event: this.state.newEvent, memo: this.state.newMemo, project: this.props.projectID, date: this.state.newDate, time: this.state.newTime })
         this.setState({newEvent: ''});
         this.setState({newMemo: ''});
         this.setState({newDate: ''});

@@ -9,7 +9,7 @@ class NewTask extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userID: '',
+            userID: this.props.userID,
             newTask: '',
             newMemo: ''
         }
@@ -25,7 +25,7 @@ class NewTask extends Component {
         this.setState({newMemo: event.target.value});
     }
     submitHandler = () => {
-        this.props.newTask({task: this.state.newTask, memo: this.state.newMemo, user: this.state.userID})
+        this.props.newTask({task: this.state.newTask, memo: this.state.newMemo, project: this.props.projectID, status: this.props.status, user: this.state.userID})
         this.setState({newTask: ''});
         this.setState({newMemo: ''});
     }

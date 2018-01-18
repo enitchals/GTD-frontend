@@ -21,6 +21,7 @@ ReactDOM.render(
 <BrowserRouter>
     <div>
         <Route path exact="/" component={App} />
+        <Route path="/project/:projectID" component={ProjectDetail}/>
     </div>
 </BrowserRouter>
 </Provider>

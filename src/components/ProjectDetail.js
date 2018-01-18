@@ -9,11 +9,16 @@ import ListNotes from './ListNotes';
 import ListEvents from './ListEvents';
 import OneProject from './OneProject';
 
+import NewTask from './NewTask';
+import NewNote from './NewNote';
+import NewEvent from './NewEvent';
+
 
 class ProjectDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            projectID: '',
             project: '',
             memo: '',
             tasks: [],
@@ -23,8 +28,13 @@ class ProjectDetail extends Component {
     }
 
     componentDidMount() {
+        const projectID = this.props.match.params.projectID;
+        this.setState({ projectID: this.props.match.params.projectID });
+        //this.setState({
+            //projectID: this.props.match.params.projectID,
+        //});
         //const token = this.props.navigation.state.params.token;
-        axios.get(`http://localhost:9001/project/${this.props.projectID}`/*, {
+        axios.get(`http://localhost:9001/project/${projectID}`/*, {
             headers: {
                 authorization: token,
             }
@@ -32,26 +42,23 @@ class ProjectDetail extends Component {
             this.setState({
                 project: res.data.project,
                 memo: res.data.memo,
-                tasks: res.data.tasks,
-                //notes: res.data.notes,
-                events: res.data.events,
             });
         }).catch(err => {
             console.log(err);
         });
-        axios.get(`http://localhost:9001/project/notes/${this.props.projectID}`)
+        axios.get(`http://localhost:9001/project/notes/${projectID}`)
         .then(res => {
             this.setState({
                 notes: res.data,
             });
         }).catch(err => console.log(err));
-        axios.get(`http://localhost:9001/project/tasks/${this.props.projectID}`)
+        axios.get(`http://localhost:9001/project/tasks/${projectID}`)
         .then(res => {
             this.setState({
                 tasks: res.data,
             });
         }).catch(err => console.log(err));
-        axios.get(`http://localhost:9001/project/events/${this.props.projectID}`)
+        axios.get(`http://localhost:9001/project/events/${projectID}`)
         .then(res => {
             this.setState({
                 events: res.data,
@@ -62,11 +69,15 @@ class ProjectDetail extends Component {
     render() {
         return (
             <div className = "ProjectDetail">
-                <h1>{this.props.projectID}</h1>
                 <OneProject project = {this.state.project} memo = {this.state.memo}/>
-                <ListNotes notes = {this.state.notes}/>
-                <ListTasks tasks = {this.state.tasks}/>
-                <ListEvents events = {this.state.events}/>
+                <ListNotes notes = {this.state.notes} projectID={this.state.projectID}/>
+                <ListTasks tasks = {this.state.tasks} projectID={this.state.projectID} status="activeProject"/>
+                <ListEvents events = {this.state.events} projectID={this.state.projectID}/>
+
+                <h1>TESTING:</h1>
+                <NewNote />
+                <NewTask />
+                <NewEvent />
             </div>
         );
     };

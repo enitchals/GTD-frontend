@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { newNote } from '../actions/noteActions';
 import { connect } from 'react-redux';
 import { store } from '../';
 
 import './App.css';
 
-class NewNote extends Component {
+class Notes extends Component {
     constructor(props) {
         super(props);
         this.state = {
             userID: this.props.userID,
+            notes: this.props.notes
             newTitle: '',
             newNote: ''
         }
@@ -44,6 +44,7 @@ class NewNote extends Component {
 const mapStateToProps = (state) => {
     return {
         userID: state.userID,
+        notes: state.notes
     }
 }
 

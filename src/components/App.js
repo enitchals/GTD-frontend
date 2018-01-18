@@ -4,6 +4,9 @@ import NewEvent from './NewEvent';
 import NewTask from './NewTask';
 import NewProject from './NewProject';
 import ProjectDetail from './ProjectDetail';
+import Home from './Home';
+import SignUp from './SignUp';
+import SignIn from './SignIn';
 import axios from 'axios';
 
 import './App.css';
@@ -12,12 +15,16 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: []
+      userID: '',
+      tasks: [],
+      notes: [],
+      events: [],
+      projects: []
     }
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:9001/notes/${this.props.userID}`)
+    axios.get(`http://localhost:9001/notes/${this.state.userID}`)
     .then(res => {
       this.setState({
         notes: res.data.notes,
@@ -28,21 +35,19 @@ class App extends Component {
   render() {
     return (
       <div>
-        <ProjectDetail projectID="5a5fcd187aea3626c8b6616b"/>
+        <Home/>
       </div>
     );
   }
 }
 
+
 const mapStateToProps = (state) => {
   return {
       userID: state.userID,
-      tasks: state.tasks,
-      notes: state.notes,
-      events: state.events,
-      projects: state.projects
   }
 }
+
 
 export default App;
 

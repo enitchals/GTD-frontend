@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import OneNote from './OneNote';
+import NewNote from './NewNote';
 import './App.css';
 
 const ListNotes = (props) => {
@@ -8,6 +9,7 @@ const ListNotes = (props) => {
         <div>
             <h1> list of notes</h1>
             <ul>{notes}</ul>
+            <NewNote projectID={props.projectID}/>
         </div>
     )
 }

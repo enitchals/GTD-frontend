@@ -1,12 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class OneProject extends React.Component {
     render() {
         return (
             <div>
-                <h1> project detail</h1>
-                <p className="ProjectTitle"> {this.props.project} </p>
-                <p className="ProjectMemo"> {this.props.memo} </p>
+                <Link to={`/project/${this.props.project._id}`}>
+                    <p className="ProjectTitle"> {this.props.project.project} </p>
+                </Link>
+                <p className="ProjectMemo"> {this.props.project.memo} </p>
             </div>
         )
     }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import OneEvent from './OneEvent';
+import NewEvent from './NewEvent';
 import './App.css';
 
 const ListEvents = (props) => {
@@ -8,6 +9,7 @@ const ListEvents = (props) => {
         <div>
             <h1> list of events</h1>
             <ul>{events}</ul>
+            <NewEvent projectID={props.projectID}/>
         </div>
     )
 }
