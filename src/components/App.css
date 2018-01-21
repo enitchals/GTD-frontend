@@ -1,28 +1,67 @@
-.App {
+
+
+
+.Home {
+  background-color: Teal;
+}
+
+.Box {
+  background-color: floralwhite;
+  border: 3px solid teal;
+  margin: 10px;
+}
+
+.Container-Column {
+  display: flex;
+  flex-basis: 1;
+  flex-direction: column;
+  align-items: center;
+  background-color: floralwhite;
+  padding: 10px;
+}
+
+.Container-Row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Section-Header {
+  color: Teal;
+  font-size: 1.25em;
+  font-family: 'Roboto Slab', serif;
+}
+
+.Header {
+  color: Teal;
+  text-emphasis: bold;
+  font-size: 1.1em;
+  font-family: 'Vast Shadow', serif;
+}
+
+.NewItem-Header {
+  color: teal;
+  font-size: 1em;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.Task{
+  font-size: 1em;
+  line-height: 1em;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.TaskMemo {
+  font-size: .75em;
+  line-height: .75em;
 }
 
-.App-title {
-  font-size: 1.5em;
-}
+.TextInput {}
 
-.App-intro {
-  font-size: large;
-}
+.TextArea {}
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+
+
+/* USED AS LABELS -- NOT STYLES YET */
+.NextActions{}
+.CurrentProjects{}
+.Calendar{}

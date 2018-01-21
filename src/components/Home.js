@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import { store } from '../';
 import './App.css';
 
-import ListTasks from './ListTasks';
-import ListNotes from './ListNotes';
-import ListEvents from './ListEvents';
-import ListProjects from './ListProjects';
+import Tasks from './Tasks';
+import Notes from './Notes';
+import Events from './Events';
+import Projects from './Projects';
+import Header from './Header';
 
 
 class Home extends Component {
@@ -16,33 +17,34 @@ class Home extends Component {
         this.state = {
             nextActions: [],
             projects: [],
+            events: [],
         }
     }
 
-    componentDidMount() {
-        //const token = this.props.navigation.state.params.token;
-        axios.get(`http://localhost:9001/nextActions/${this.props.userID}`)
-        .then(res => {
-            this.setState({
-                nextActions: res.data,
-            });
-        }).catch(err => console.log(err));
-
-        axios.get(`http://localhost:9001/projects/${this.props.userID}`)
-        .then(res => {
-            this.setState({
-                projects: res.data,
-            });
-        }).catch(err => console.log(err));
-    }
-
+    /*
+        <h1>Next Actions:</h1>
+        <Tasks tasks = {this.state.nextActions} userID = {this.state.userID}/>
+        <h1>Project List:</h1>
+        <Projects projects={this.state.projects} userID = {this.state.userID}/>
+                */
     render() {
         return (
-            <div className = "Home">
-                <h1>Next Actions:</h1>
-                <ListTasks tasks = {this.state.nextActions}/>
-                <h1>Project List:</h1>
-                <ListProjects projects={this.state.projects}/>
+            <div className = "Container-Column Home">
+                <Header/>
+                <div className = "Container-Row">
+                    <div className = "Container-Column Box NextActions">
+                        <div className = "Section-Header">Next Actions</div>
+                        <Tasks tasks={this.state.nextActions} userID={this.state.userID} status={"nextActions"}/>
+                    </div>
+                    <div className = "Container-Column Box CurrentProjects">
+                        <div className = "Section-Header">Project List</div>
+                        <Projects projects={this.state.projects} userID={this.state.userID}/>
+                    </div>
+                    <div className = "Container-Column Box Calendar">
+                        <div className = "Section-Header">Calendar</div>
+                        <Events events={this.state.events} userID={this.state.userID}/>
+                    </div>
+                </div>
             </div>
         );
     };
@@ -51,6 +53,10 @@ class Home extends Component {
 const mapStateToProps = (state) => {
     return {
         userID: state.userID,
+        tasks: state.tasks,
+        notes: state.notes,
+        projects: state.projects,
+        events: state.events
     }
 }
 

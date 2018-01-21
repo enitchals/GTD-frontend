@@ -2,7 +2,7 @@ import { NEW_EVENT, GET_EVENT, GET_EVENTS, DELETE_EVENT } from '../actions/event
 
 const initialState = { events: [] };
 
-const eventReducer = (events = initialState, action) => {
+const eventReducer = (events, action) => {
     switch (action.type) {
         case NEW_EVENT:
             return events.concat(action.payload);

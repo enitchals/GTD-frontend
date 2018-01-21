@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import setState from 'react';
 import axios from 'axios';
+import { store } from '../'
 
 export default class SignIn extends Component {
     constructor(props) {
@@ -9,6 +11,9 @@ export default class SignIn extends Component {
             password: '',
         };
         this.signIn = this.signIn.bind(this);
+        this.changeHandlerEmail = this.changeHandlerEmail.bind(this);
+        this.changeHandlerPassword = this.changeHandlerPassword.bind(this);
+        this.userDataHander = this.userDataHander.bind(this);
     }
 
     changeHandlerEmail = (event) => {
@@ -19,13 +24,19 @@ export default class SignIn extends Component {
         this.setState({password: event.target.value});
     }
 
+    userDataHander = (data) => {
+        store.dispatch({
+            type: 'LOGIN',
+            payload: data
+        })
+    };
+
     signIn() {
         axios.post('http://localhost:9001/login', {
             email: this.state.email,
             password: this.state.password,
         }).then((res) => {
-            console.log('response.data.token');
-            //this.props.navigation.navigate('Home', { token: response.data.token });
+            this.userDataHander(res.data);
         }).catch(err => {
             console.log(err);
         });

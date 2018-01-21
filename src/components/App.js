@@ -11,6 +11,7 @@ import axios from 'axios';
 
 import './App.css';
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +28,10 @@ class App extends Component {
     axios.get(`http://localhost:9001/notes/${this.state.userID}`)
     .then(res => {
       this.setState({
+        tasks: res.data.tasks,
         notes: res.data.notes,
+        events: res.data.events,
+        projects: res.data.projects
       });
     }).catch(err => console.log(err));
   }
@@ -48,17 +52,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-
 export default App;
-
-
-/*
-        <h1>new task:</h1>
-        <NewTask />
-        <h1>new note:</h1>
-        <NewNote />
-        <h1>new event:</h1>
-        <NewEvent />
-        <h1>new project:</h1>
-        <NewProject />
-        */

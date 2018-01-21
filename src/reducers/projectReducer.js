@@ -2,7 +2,7 @@ import { NEW_PROJECT, GET_PROJECT, GET_PROJECTS, DELETE_PROJECT } from '../actio
 
 const initialState = { projects: [] };
 
-const projectReducer = (projects = initialState, action) => {
+const projectReducer = (projects, action) => {
     switch (action.type) {
         case NEW_PROJECT:
             return projects.concat(action.payload);

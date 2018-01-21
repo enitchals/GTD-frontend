@@ -2,7 +2,7 @@ import { NEW_NOTE, GET_NOTE, GET_NOTES, DELETE_NOTE } from '../actions/noteActio
 
 const initialState = { notes: [] };
 
-const noteReducer = (notes = initialState, action) => {
+const noteReducer = (notes, action) => {
     switch (action.type) {
         case NEW_NOTE:
             return notes.concat(action.payload);

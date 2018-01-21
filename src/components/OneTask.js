@@ -18,11 +18,11 @@ class OneTask extends Component {
             <div>
                 {this.state.show ? 
                     <div>
-                        <input type="checkbox" onChange={this.deleteTask.bind(this)}/>
-                        <p className="Task"> {this.props.task.task} </p>
-                        <p className="TaskMemo"> {this.props.task.memo} </p>
-                        <p className="TaskProject"> {this.props.task.project.project} </p>
-                </div>
+                        <div className="Task">
+                            <input type="checkbox" onChange={this.deleteTask.bind(this)}/>
+                            {this.props.task.task}
+                        </div>
+                    </div>
                 : <div></div>}
             </div>
         )
